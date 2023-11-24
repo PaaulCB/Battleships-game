@@ -1,5 +1,15 @@
 from pprint import pprint
 from random import randint
+#Constant that stores the number of ships and turns for every board size
+GAME_SETTINGS = [
+    {"size":4, "small_ship":2, "medium_ship":0, "big_ships":0, "turns":10},
+    {"size":5, "small_ship":3, "medium_ship":1, "big_ships":0, "turns":15},
+    {"size":6, "small_ship":4, "medium_ship":2, "big_ships":0, "turns":20},
+    {"size":7, "small_ship":5, "medium_ship":2, "big_ships":1, "turns":30},
+    {"size":8, "small_ship":6, "medium_ship":2, "big_ships":2, "turns":40},
+    {"size":9, "small_ship":7, "medium_ship":3, "big_ships":2, "turns":50},
+    {"size":10, "small_ship":8, "medium_ship":3, "big_ships":3, "turns":60}
+]
 
 class Ship():
     """
@@ -147,10 +157,20 @@ def generate_ships(board, quantity, type):
             #Add the new ship to the current board ships 
             board.add_ship(new_ship)
 
+
+def get_settings(size):
+    """
+    Return a diccionary with the game settings depending on the size variable
+    """
+    for settings in GAME_SETTINGS:
+        if settings["size"] == size:
+            return settings
+
+
 #testing data
 test = Board("Paul","Player", 10)
-generate_ships(test, 2, 3)
-generate_ships(test, 5, 2)
+generate_ships(test, 0, 3)
+generate_ships(test, 0, 2)
 generate_ships(test, 1, 1)
 test.guess(4,5)
 test.guess(5,5)
@@ -160,4 +180,5 @@ pprint(test.sunked)
 test.print()
 print(f"Misses\n{test.misses}")
 pprint(test.ships)
-
+settings = get_settings(7)
+pprint(settings)
