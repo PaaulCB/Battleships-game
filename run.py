@@ -1,5 +1,5 @@
 from pprint import pprint
-
+from random import randint
 
 class Ship():
     """
@@ -87,20 +87,77 @@ class Board():
             for i in ship.coordinates:
                 self.board[i[0]][i[1]] = "O"
 
+def random_coordinate(size, type):
+    """
+    Return a random coordinate accordly to the size and type.
+    The type variable avoid getting a coordinate that are off the board 
+    for mediums and big ships.
+    """
+    if (type == 1):
+        return [randint(0, size - 1),randint(0, size - 1)]
+    elif (type == 2):
+        return [randint(0, size - 2),randint(0, size - 2)]
+    elif (type == 3):
+        return [randint(0, size - 3),randint(0, size - 3)]
+
+
+def get_invalid_ship_position(board):
+    """
+    Return a list with the coordenates of the ships that are on the board
+    """
+    invalid_coordinates = []
+    for ship in board.ships:
+        for coordinate in ship.coordinates: 
+            invalid_coordinates.append(coordinate)
+    return invalid_coordinates
+
+
+def generate_ships(board, quantity, type):
+    """
+    Generate ships on empty coordinates and add them to the board current ships.
+    The quantity variable it's use generate x numbers of ships.
+    The type it's used to generate the differents type of ships
+    1=small 2=medium 3=big
+    """
+    for i in range(0, quantity):
+        #Get the coordinates that are already taken
+        invalid_coordinates = get_invalid_ship_position(board)
+        invalid=True
+        while invalid :
+            invalid=False
+            #generate a random coordinate for the ship type
+            coordinate = random_coordinate(board.size, type)
+            ship_coordinates=[]
+            for x in range(coordinate[0],coordinate[0]+type):
+                for y in range(coordinate[1],coordinate[1]+type):
+                    if [x, y] in invalid_coordinates:
+                        #if the coordinate it's already taken break the loop
+                        invalid=True
+                        break
+                    ship_coordinates.append([x, y])
+            if invalid:
+                continue
+            #Depending on the type creates a new instance of Small, Medium or BigShip
+            if (type == 1):
+                new_ship = SmallShip(ship_coordinates)
+            elif (type == 2):
+                new_ship = MediumShip(ship_coordinates)
+            elif (type == 3):
+                new_ship = BigShip(ship_coordinates)
+            #Add the new ship to the current board ships 
+            board.add_ship(new_ship)
+
 #testing data
-test = Board("Paul","Player", 8)
-ship1=BigShip([[0,0],[0,1],[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]])
-ship2=MediumShip([[3,3],[3,4],[4,3],[4,4]])
-ship3=SmallShip([[5,5]])
-test.add_ship(ship1)
-test.add_ship(ship2)
-test.add_ship(ship3)
-test.print()
-pprint(test.ships)
+test = Board("Paul","Player", 10)
+generate_ships(test, 2, 3)
+generate_ships(test, 5, 2)
+generate_ships(test, 1, 1)
 test.guess(4,5)
 test.guess(5,5)
 test.guess(2,2)
+print("Sunked----------------------")
 pprint(test.sunked)
 test.print()
 print(f"Misses\n{test.misses}")
 pprint(test.ships)
+
