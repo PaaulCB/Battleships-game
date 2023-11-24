@@ -2,13 +2,13 @@ from pprint import pprint
 from random import randint
 #Constant that stores the number of ships and turns for every board size
 GAME_SETTINGS = [
-    {"size":4, "small_ship":2, "medium_ship":0, "big_ships":0, "turns":10},
-    {"size":5, "small_ship":3, "medium_ship":1, "big_ships":0, "turns":15},
-    {"size":6, "small_ship":4, "medium_ship":2, "big_ships":0, "turns":20},
-    {"size":7, "small_ship":5, "medium_ship":2, "big_ships":1, "turns":30},
-    {"size":8, "small_ship":6, "medium_ship":2, "big_ships":2, "turns":40},
-    {"size":9, "small_ship":7, "medium_ship":3, "big_ships":2, "turns":50},
-    {"size":10, "small_ship":8, "medium_ship":3, "big_ships":3, "turns":60}
+    {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":10},
+    {"size":5, "small_ships":3, "medium_ships":1, "big_ships":0, "turns":15},
+    {"size":6, "small_ships":4, "medium_ships":2, "big_ships":0, "turns":20},
+    {"size":7, "small_ships":5, "medium_ships":2, "big_ships":1, "turns":30},
+    {"size":8, "small_ships":6, "medium_ships":2, "big_ships":2, "turns":40},
+    {"size":9, "small_ships":7, "medium_ships":3, "big_ships":2, "turns":50},
+    {"size":10, "small_ships":8, "medium_ships":3, "big_ships":3, "turns":60}
 ]
 
 class Ship():
@@ -125,7 +125,7 @@ def get_invalid_ship_position(board):
 def generate_ships(board, quantity, type):
     """
     Generate ships on empty coordinates and add them to the board current ships.
-    The quantity variable it's use generate x numbers of ships.
+    The quantity variable it's used to generate x numbers of ships.
     The type it's used to generate the differents type of ships
     1=small 2=medium 3=big
     """
@@ -167,8 +167,21 @@ def get_settings(size):
             return settings
 
 
+def populate_board(board):
+    """
+    Popupate the board accordly to the size using the GAME_SETTINGS constant
+    """
+    settings = get_settings(board.size)
+    generate_ships(board, settings["big_ships"], 3)#Big ships
+    generate_ships(board, settings["medium_ships"], 2)#Medium ships
+    generate_ships(board, settings["small_ships"], 1)#Small ships
+
+
+
+
 #testing data
-test = Board("Paul","Player", 10)
+test = Board("Paul","Player", 6)
+"""
 generate_ships(test, 0, 3)
 generate_ships(test, 0, 2)
 generate_ships(test, 1, 1)
@@ -180,5 +193,6 @@ pprint(test.sunked)
 test.print()
 print(f"Misses\n{test.misses}")
 pprint(test.ships)
-settings = get_settings(7)
-pprint(settings)
+"""
+populate_board(test)
+test.print()
