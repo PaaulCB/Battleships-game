@@ -42,6 +42,13 @@ class Ship():
         Returns the type of the ship
         """
         return self.type
+    
+    
+    def get_value(self):
+        """
+        Returns the value of the ship
+        """
+        return self.value
 
 class BigShip(Ship):
     """
