@@ -11,6 +11,18 @@ GAME_SETTINGS = [
     {"size":10, "small_ships":8, "medium_ships":3, "big_ships":3, "turns":60}
 ]
 
+
+class Game():
+    """
+    Creates an instance of Game
+    """
+    def __init__(self, turns, name):
+        self.turns = turns
+        self.player_name = name
+        self.player_score = 0
+        self.computer_score = 0
+
+
 class Ship():
     """
     Creates an instance of Ship
@@ -218,11 +230,12 @@ def play_game(player_board, computer_board):
     print("game over")
 
 
-
 def new_game():
     print("Welcome to Battleships Game\n")
     name = input("Please introduce your name\n")
     size = int(input("Please introduce the size of the board (options availables 4-10)\n"))
+    turns = get_settings(size)["turns"]
+    game = Game(turns, name)
     player_board = Board(name, "Player", size)
     computer_board = Board("Computer", "Player", size)#Change Player to computer after testings
     populate_board(player_board)
