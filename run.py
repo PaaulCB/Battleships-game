@@ -34,7 +34,14 @@ class Ship():
     """
     def __init__(self, coordinates):
         self.coordinates = coordinates
+        self.type = "Ship"
+    
 
+    def get_type(self):
+        """
+        Returns the type of the ship
+        """
+        return self.type
 
 class BigShip(Ship):
     """
@@ -43,6 +50,7 @@ class BigShip(Ship):
     def __init__(self, coordinates):
         super().__init__(coordinates)
         self.value = 1
+        self.type = "Big ship"
 
 
 class MediumShip(Ship):
@@ -52,6 +60,7 @@ class MediumShip(Ship):
     def __init__(self, coordinates):
         super().__init__(coordinates)
         self.value = 2
+        self.type = "Medium ship"
 
 
 class SmallShip(Ship):
@@ -61,6 +70,7 @@ class SmallShip(Ship):
     def __init__(self, coordinates):
         super().__init__(coordinates)
         self.value = 3
+        self.type = "Small ship"
 
 
 class Board():
@@ -98,6 +108,7 @@ class Board():
                 for coordinate in ship.coordinates:
                     self.board[coordinate[0]][coordinate[1]] = "\u00D8"
                     self.sunked.append(coordinate)
+                print(ship.get_type())
                 self.ships.remove(ship)
                 return "Hit"
         self.board[x][y] = "X"
