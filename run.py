@@ -246,6 +246,20 @@ def print_boards(player_board, computer_board):
     print(f"\n{computer_board.name}'s Board")
     computer_board.print()
 
+
+def get_winner(game):
+    """
+    Prints the winner
+    """
+    if(game.player_score == game.computer_score):
+        print("It's a tie")
+    elif(game.player_score > game.computer_score):
+        print(f"{game.player_name} wins")
+    else:
+        print("Computer wins")
+
+
+
 def play_round(player_board, computer_board, game):
     """
     Play a round of the game
@@ -266,7 +280,8 @@ def play_game(player_board, computer_board, game):
         play_round(player_board, computer_board, game)
         if not player_board.ships or not computer_board.ships:
             game_over = True
-    print("game over")
+    game.print_scores()
+    get_winner(game)
 
 
 def new_game():
