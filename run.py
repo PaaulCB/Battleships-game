@@ -177,22 +177,46 @@ def populate_board(board):
     generate_ships(board, settings["small_ships"], 1)#Small ships
 
 
+def get_guess():
+    """
+    Asks for a row and a column to guess and return it in a list
+    """
+    x = input("Introduce a row to guess\n")
+    y = input("Introduce a column to guess\n")
+    return [x, y]
 
+
+def print_boards(player_board, computer_board):
+    """
+    Prints the boards passed as parameters
+    """
+    print(f"\n{player_board.name}'s Board")
+    player_board.print()
+    print(f"\n{computer_board.name}'s Board")
+    computer_board.print()
+
+def play_round(player_board, computer_board):
+    """
+    Play a round of the game
+    """
+    guess = get_guess()
+    random_guess = random_coordinate(player_board.size, 1)
+    computer_board.guess(int(guess[0]),int(guess[1]))
+    player_board.guess(int(random_guess[0]),int(random_guess[1]))
+    print_boards(player_board, computer_board)
+
+
+def new_game():
+    print("Welcome to Battleships Game\n")
+    name = input("Please introduce your name\n")
+    size = int(input("Please introduce the size of the board (options availables 4-10)\n"))
+    player_board = Board(name, "Player", size)
+    computer_board = Board("Computer", "Computer", size)
+    populate_board(player_board)
+    populate_board(computer_board)
+    print_boards(player_board,computer_board)
+    play_round(player_board,computer_board)
+    
 
 #testing data
-test = Board("Paul","Player", 6)
-"""
-generate_ships(test, 0, 3)
-generate_ships(test, 0, 2)
-generate_ships(test, 1, 1)
-test.guess(4,5)
-test.guess(5,5)
-test.guess(2,2)
-print("Sunked----------------------")
-pprint(test.sunked)
-test.print()
-print(f"Misses\n{test.misses}")
-pprint(test.ships)
-"""
-populate_board(test)
-test.print()
+new_game()
