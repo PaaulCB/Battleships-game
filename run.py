@@ -34,8 +34,7 @@ class Ship():
     """
     def __init__(self, coordinates):
         self.coordinates = coordinates
-        self.type = "Ship"
-    
+
 
     def get_type(self):
         """
@@ -115,12 +114,13 @@ class Board():
                 for coordinate in ship.coordinates:
                     self.board[coordinate[0]][coordinate[1]] = "\u00D8"
                     self.sunked.append(coordinate)
-                print(ship.get_type())
+                type = ship.get_type()
+                value = ship.get_value()
                 self.ships.remove(ship)
-                return "Hit"
+                return f"hit a {type} and gains {value} points"
         self.board[x][y] = "X"
         self.misses.append([x, y])
-        return "Miss"
+        return "miss the shot"
 
     def add_ship(self, ship):
         """
@@ -237,8 +237,8 @@ def play_round(player_board, computer_board):
     """
     guess = get_guess()
     random_guess = random_coordinate(player_board.size, 1)
-    computer_board.guess(int(guess[0]),int(guess[1]))
-    player_board.guess(int(random_guess[0]),int(random_guess[1]))
+    print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]))}")
+    print("Computer "+player_board.guess(int(random_guess[0]),int(random_guess[1])))
     print_boards(player_board, computer_board)
 
 def play_game(player_board, computer_board):
