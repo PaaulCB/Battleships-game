@@ -181,8 +181,9 @@ def get_guess():
     """
     Asks for a row and a column to guess and return it in a list
     """
-    x = input("Introduce a row to guess\n")
     y = input("Introduce a column to guess\n")
+    x = input("Introduce a row to guess\n")
+    
     return [x, y]
 
 
@@ -205,18 +206,30 @@ def play_round(player_board, computer_board):
     player_board.guess(int(random_guess[0]),int(random_guess[1]))
     print_boards(player_board, computer_board)
 
+def play_game(player_board, computer_board):
+    """
+    Play the game
+    """
+    game_over = False
+    while(not game_over):
+        play_round(player_board, computer_board)
+        if not player_board.ships or not computer_board.ships:
+            game_over = True
+    print("game over")
+
+
 
 def new_game():
     print("Welcome to Battleships Game\n")
     name = input("Please introduce your name\n")
     size = int(input("Please introduce the size of the board (options availables 4-10)\n"))
     player_board = Board(name, "Player", size)
-    computer_board = Board("Computer", "Computer", size)
+    computer_board = Board("Computer", "Player", size)#Change Player to computer after testings
     populate_board(player_board)
     populate_board(computer_board)
     print_boards(player_board,computer_board)
-    play_round(player_board,computer_board)
+    play_game(player_board,computer_board)
+    
     
 
-#testing data
 new_game()
