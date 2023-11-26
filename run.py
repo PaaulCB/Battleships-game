@@ -21,6 +21,11 @@ class Game():
         self.player_name = name
         self.player_score = 0
         self.computer_score = 0
+    
+
+    def print_scores(self):
+        """Prints the scores"""
+        print(f"{self.player_name}: {self.player_score} Computer: {self.computer_score}")
 
 
 class Ship():
@@ -236,6 +241,7 @@ def new_game():
     size = int(input("Please introduce the size of the board (options availables 4-10)\n"))
     turns = get_settings(size)["turns"]
     game = Game(turns, name)
+    game.print_scores()
     player_board = Board(name, "Player", size)
     computer_board = Board("Computer", "Player", size)#Change Player to computer after testings
     populate_board(player_board)
