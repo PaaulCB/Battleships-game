@@ -28,6 +28,16 @@ class Game():
         print(f"{self.player_name}: {self.player_score} Computer: {self.computer_score}")
 
 
+    def increment_score(self, type, value):
+        """
+        Increments player or computer score
+        """
+        if(type == "Player"):
+            self.player_score += value
+        else:
+            self.computer_score += value
+
+
 class Ship():
     """
     Creates an instance of Ship
@@ -101,7 +111,7 @@ class Board():
             print(" ".join(row))
 
 
-    def guess(self, x, y):
+    def guess(self, x, y, game):
         """
         Iterate through the coordinates of the ships in the ships attribute and  
         if the guess its correct changes all the coordinates of the hitted ship, 
@@ -116,6 +126,10 @@ class Board():
                     self.sunked.append(coordinate)
                 type = ship.get_type()
                 value = ship.get_value()
+                if(self.type == "Player"):
+                    game.increment_score("Computer",value)
+                else:
+                    game.increment_score("Player",value)
                 self.ships.remove(ship)
                 return f"hit a {type} and gains {value} points"
         self.board[x][y] = "X"
@@ -128,9 +142,10 @@ class Board():
         If the type it's "Player" shows the ship on the board.
         """
         self.ships.append(ship)
-        if self.type == "Player":
-            for i in ship.coordinates:
-                self.board[i[0]][i[1]] = "O"
+        #commented for testings
+        #if self.type == "Player":
+        for i in ship.coordinates:
+            self.board[i[0]][i[1]] = "O"
 
 def random_coordinate(size, type):
     """
@@ -231,23 +246,24 @@ def print_boards(player_board, computer_board):
     print(f"\n{computer_board.name}'s Board")
     computer_board.print()
 
-def play_round(player_board, computer_board):
+def play_round(player_board, computer_board, game):
     """
     Play a round of the game
     """
     guess = get_guess()
     random_guess = random_coordinate(player_board.size, 1)
-    print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]))}")
-    print("Computer "+player_board.guess(int(random_guess[0]),int(random_guess[1])))
+    print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]),game)}")
+    print("Computer "+player_board.guess(int(random_guess[0]),int(random_guess[1]),game))
+    game.print_scores()
     print_boards(player_board, computer_board)
 
-def play_game(player_board, computer_board):
+def play_game(player_board, computer_board, game):
     """
     Play the game
     """
     game_over = False
     while(not game_over):
-        play_round(player_board, computer_board)
+        play_round(player_board, computer_board, game)
         if not player_board.ships or not computer_board.ships:
             game_over = True
     print("game over")
@@ -261,11 +277,11 @@ def new_game():
     game = Game(turns, name)
     game.print_scores()
     player_board = Board(name, "Player", size)
-    computer_board = Board("Computer", "Player", size)#Change Player to computer after testings
+    computer_board = Board("Computer", "Computer", size)
     populate_board(player_board)
     populate_board(computer_board)
     print_boards(player_board,computer_board)
-    play_game(player_board,computer_board)
+    play_game(player_board,computer_board, game)
     
     
 
