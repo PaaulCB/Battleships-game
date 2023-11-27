@@ -2,7 +2,7 @@ from pprint import pprint
 from random import randint
 #Constant that stores the number of ships and turns for every board size
 GAME_SETTINGS = [
-    {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":10},
+    {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":1},
     {"size":5, "small_ships":3, "medium_ships":1, "big_ships":0, "turns":15},
     {"size":6, "small_ships":4, "medium_ships":2, "big_ships":0, "turns":20},
     {"size":7, "small_ships":5, "medium_ships":2, "big_ships":1, "turns":30},
@@ -36,6 +36,12 @@ class Game():
             self.player_score += value
         else:
             self.computer_score += value
+
+    def turns_remaining(self):
+        """
+        Prints the turns remaining
+        """
+        print(f"Turns remaining: {self.turns}")
 
 
 class Ship():
@@ -260,6 +266,13 @@ def get_winner(game):
 
 
 
+def decrease_turns(game):
+    """
+    Decrease the turns of the game by 1
+    """
+    game.turns -= 1
+
+
 def play_round(player_board, computer_board, game):
     """
     Play a round of the game
@@ -269,7 +282,10 @@ def play_round(player_board, computer_board, game):
     print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]),game)}")
     print("Computer "+player_board.guess(int(random_guess[0]),int(random_guess[1]),game))
     game.print_scores()
+    decrease_turns(game)
+    game.turns_remaining()
     print_boards(player_board, computer_board)
+
 
 def play_game(player_board, computer_board, game):
     """
@@ -278,7 +294,7 @@ def play_game(player_board, computer_board, game):
     game_over = False
     while(not game_over):
         play_round(player_board, computer_board, game)
-        if not player_board.ships or not computer_board.ships:
+        if (not player_board.ships or not computer_board.ships) or game.turns == 0:
             game_over = True
     game.print_scores()
     get_winner(game)
