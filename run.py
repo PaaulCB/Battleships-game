@@ -2,7 +2,7 @@ from pprint import pprint
 from random import randint
 #Constant that stores the number of ships and turns for every board size
 GAME_SETTINGS = [
-    {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":1},
+    {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":10},
     {"size":5, "small_ships":3, "medium_ships":1, "big_ships":0, "turns":15},
     {"size":6, "small_ships":4, "medium_ships":2, "big_ships":0, "turns":20},
     {"size":7, "small_ships":5, "medium_ships":2, "big_ships":1, "turns":30},
@@ -273,6 +273,47 @@ def decrease_turns(game):
     game.turns -= 1
 
 
+def validate_name(name):
+    """
+    Returns False if the name it's empty, contains invalid characters or
+    if doesn't have between 4-11 characters. Also prints a descriptive error.
+    Otherwise return True.
+    """
+    try:
+        if not name:#Checks if name it's empty
+            raise ValueError("Username cannot be empty.")
+        
+        for c in name:#Checks all the characthers are digit, letter or space.
+            if c.isalpha() or c.isspace() or c.isdigit():
+                continue
+            else:
+                raise ValueError("Username only can contain letters, digits or spaces")
+
+        if len(name) < 4:#Checks if name has less then 4 characters
+            raise ValueError("Username too short.")
+        elif len(name) > 11:#Checks if name has more then 11 characters
+            raise ValueError("Username too long.")
+        return True#If any error has been triggered return True
+
+    except ValueError as e:
+        print(f"\n{e}")#Prints the error ans return False
+        return False
+
+
+def get_name():
+    """
+    Returns name after cheking if it's valid with the validate_name() function
+    """
+    name = input("Please introduce your username (4-11 characters)\n")
+    while True:#Infinte loop
+        if validate_name(name):
+            break#Break the loop if the name it's valid
+        else:#Asks fot the name again
+            name = input("Please enter a valid username (4-11 characters)\n")
+    return name#Returns name when it's valid
+
+
+
 def play_round(player_board, computer_board, game):
     """
     Play a round of the game
@@ -302,7 +343,7 @@ def play_game(player_board, computer_board, game):
 
 def new_game():
     print("Welcome to Battleships Game\n")
-    name = input("Please introduce your name\n")
+    name = get_name()
     size = int(input("Please introduce the size of the board (options availables 4-10)\n"))
     turns = get_settings(size)["turns"]
     game = Game(turns, name)
