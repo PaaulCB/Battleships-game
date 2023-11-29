@@ -302,7 +302,7 @@ def validate_name(name):
 
 def get_name():
     """
-    Returns name after cheking if it's valid with the validate_name() function
+    Returns name after checking if it's valid with the validate_name() function
     """
     name = input("Please introduce your username (4-11 characters)\n")
     while True:#Infinte loop
@@ -312,6 +312,38 @@ def get_name():
             name = input("Please enter a valid username (4-11 characters)\n")
     return name#Returns name when it's valid
 
+def validate_size(size):
+    """
+    Returns False if the size it's empty, or
+    if is not between 4-11. Also prints a descriptive error.
+    Otherwise return True.
+    """
+    try:
+        if not size:#Checks if size it's empty
+            raise ValueError("Size cannot be empty.")
+
+        if int(size) < 4 or int(size) > 11:#Checks if size it's between 4-11
+            raise ValueError("Invalid size option")
+        
+        return True#If any error has been triggered return True
+
+    except ValueError as e:
+        print(f"\n{e}")#Prints the error ans return False
+        return False
+            
+
+def get_size():
+    """
+    Returns size converted to integer after checking 
+    if it's valid with the validate_size() function
+    """
+    size = input("Please introduce the size of the board (options availables 4-10)\n")
+    while True:#Infinte loop
+        if validate_size(size):
+            break#Break the loop if the size it's valid
+        else:#Asks for the size again
+            size = input("Please introduce a valid size (options availables 4-10)\n")
+    return int(size)#Returns size when it's valid
 
 
 def play_round(player_board, computer_board, game):
@@ -344,7 +376,7 @@ def play_game(player_board, computer_board, game):
 def new_game():
     print("Welcome to Battleships Game\n")
     name = get_name()
-    size = int(input("Please introduce the size of the board (options availables 4-10)\n"))
+    size = get_size()
     turns = get_settings(size)["turns"]
     game = Game(turns, name)
     game.print_scores()
