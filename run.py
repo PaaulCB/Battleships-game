@@ -347,6 +347,15 @@ def get_size():
     return int(size)#Returns size when it's valid
 
 
+def is_invalid(coordinate, invalid):
+    """
+    Returns True if coordinate is on invalid otherwise return False
+    """
+    if coordinate in invalid:
+        return True
+    else:
+        return False
+
 
 def validate_guess(x, y, board):
     """
