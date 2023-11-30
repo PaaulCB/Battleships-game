@@ -296,7 +296,7 @@ def validate_name(name):
         return True#If any error has been triggered return True
 
     except ValueError as e:
-        print(f"\n{e}")#Prints the error ans return False
+        print(f"\n{e}")#Prints the error and return False
         return False
 
 
@@ -311,6 +311,7 @@ def get_name():
         else:#Asks fot the name again
             name = input("Please enter a valid username (4-11 characters)\n")
     return name#Returns name when it's valid
+
 
 def validate_size(size):
     """
@@ -328,7 +329,7 @@ def validate_size(size):
         return True#If any error has been triggered return True
 
     except ValueError as e:
-        print(f"\n{e}")#Prints the error ans return False
+        print(f"\n{e}")#Prints the error and return False
         return False
             
 
@@ -344,6 +345,35 @@ def get_size():
         else:#Asks for the size again
             size = input("Please introduce a valid size (options availables 4-10)\n")
     return int(size)#Returns size when it's valid
+
+
+
+def validate_guess(x, y, board):
+    """
+    Returns False if x or y are empty, if they are not digits
+    or if they are not between 0 and board.size -1. 
+    Also prints a descriptive error.
+    Otherwise return True.
+    """
+    try:
+        if not x or not y:#Check if x or y are empty
+            raise ValueError("Row and column cannot be empty.")
+
+        if not x.isdigit() or not y.isdigit():#Checks if x or y are digits
+            raise TypeError("Row and column must be intenger numbers.")
+        
+        if int(x) < 0 or int(x) > board.size - 1:#Checks if x has a valid range 
+            raise ValueError(f"Row and column must be between 0 - {board.size - 1}.")
+        
+        if int(y) < 0 or int(y) > board.size - 1:#Checks if y has a valid range 
+            raise ValueError(f"Row and column must be between 0 - {board.size - 1}.") 
+        
+        return True#If any error has been triggered return True
+
+    except ValueError as e:
+        print(f"\n{e}")#Prints the error and return False
+        return False 
+
 
 
 def play_round(player_board, computer_board, game):
