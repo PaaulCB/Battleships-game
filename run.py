@@ -233,16 +233,6 @@ def populate_board(board):
     generate_ships(board, settings["small_ships"], 1)#Small ships
 
 
-def get_guess():
-    """
-    Asks for a row and a column to guess and return it in a list
-    """
-    y = input("Introduce a column to guess\n")
-    x = input("Introduce a row to guess\n")
-    
-    return [x, y]
-
-
 def print_boards(player_board, computer_board):
     """
     Prints the boards passed as parameters
@@ -376,20 +366,41 @@ def validate_guess(x, y, board):
         
         if int(y) < 0 or int(y) > board.size - 1:#Checks if y has a valid range 
             raise ValueError(f"Row and column must be between 0 - {board.size - 1}.") 
-        
+        if is_invalid([int(x), int(y)] , board.sunked):
+            raise ValueError(f"You have already sunk a ship on [{x}, {y}]") 
+        if is_invalid([int(x), int(y)] , board.misses):
+            raise ValueError(f"You have already missed a shot on [{x}, {y}]")
+
         return True#If any error has been triggered return True
 
     except ValueError as e:
         print(f"\n{e}")#Prints the error and return False
         return False 
+    except TypeError as e:
+        print(f"\n{e}")#Prints the error and return False
+        return False
 
+def get_guess(board):
+    """
+    Asks for a row and a column,validate it with validate_guess function
+    and returns it in a list.
+    """
+    y = input("Introduce a column to guess\n")
+    x = input("Introduce a row to guess\n")
+    while True:
+        if validate_guess(x, y ,board):
+            break
+        else:
+            y = input("Introduce a valid column to guess\n")
+            x = input("Introduce a valid row to guess\n")
+    return [x, y]
 
 
 def play_round(player_board, computer_board, game):
     """
     Play a round of the game
     """
-    guess = get_guess()
+    guess = get_guess(computer_board)
     random_guess = random_coordinate(player_board.size, 1)
     print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]),game)}")
     print("Computer "+player_board.guess(int(random_guess[0]),int(random_guess[1]),game))
