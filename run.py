@@ -72,7 +72,7 @@ class BigShip(Ship):
     def __init__(self, coordinates):
         super().__init__(coordinates)
         self.value = 1
-        self.type = "Big ship"
+        self.type = "big ship"
 
 
 class MediumShip(Ship):
@@ -82,7 +82,7 @@ class MediumShip(Ship):
     def __init__(self, coordinates):
         super().__init__(coordinates)
         self.value = 2
-        self.type = "Medium ship"
+        self.type = "medium ship"
 
 
 class SmallShip(Ship):
@@ -92,7 +92,7 @@ class SmallShip(Ship):
     def __init__(self, coordinates):
         super().__init__(coordinates)
         self.value = 3
-        self.type = "Small ship"
+        self.type = "small ship"
 
 
 class Board():
@@ -305,7 +305,7 @@ def get_name():
         if validate_name(name):
             break#Break the loop if the name it's valid
         else:#Asks fot the name again
-            name = input("Please enter a valid username (4-11 characters)\n")
+            name = input("Please introduce a valid username (4-11 characters)\n")
     return name#Returns name when it's valid
 
 
@@ -334,7 +334,7 @@ def get_size():
     Returns size converted to integer after checking 
     if it's valid with the validate_size() function
     """
-    size = input("Please introduce the size of the board (options availables 4-10)\n")
+    size = input("\nPlease introduce the size of the board (options availables 4-10)\n")
     while True:#Infinte loop
         if validate_size(size):
             break#Break the loop if the size it's valid
@@ -422,18 +422,31 @@ def play_round(player_board, computer_board, game):
     """
     guess = get_guess(computer_board)
     random_guess = get_computer_guess(player_board)
+    print("\n"+"*"*30)
     print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]),game)}")
-    print("Computer "+player_board.guess(int(random_guess[0]),int(random_guess[1]),game))
-    game.print_scores()
+    print(f"{computer_board.name} {player_board.guess(int(random_guess[0]),int(random_guess[1]),game)}")
     decrease_turns(game)
     game.turns_remaining()
+    print("--Current scores--")
+    game.print_scores()
     print_boards(player_board, computer_board)
+    print("*"*30+"\n")
 
 
 def play_game(player_board, computer_board, game):
     """
     Play the game
     """
+    settings=get_settings(player_board.size)
+    print("\n\n"+"-"*30)
+    print(f"Turns limit for the game: {game.turns}")
+    print("Each board has:\n")
+    print(f"{settings['small_ships']} Small ships with a value of 3 points each")
+    print(f"{settings['medium_ships']} Medium ships with a value of 2 points each")
+    print(f"{settings['big_ships']} Big ships with a value of 1 points each")
+    print_boards(player_board,computer_board)
+    print("\nGood Luck!")
+    print("-"*30+"\n\n")
     game_over = False
     while(not game_over):
         play_round(player_board, computer_board, game)
@@ -444,17 +457,19 @@ def play_game(player_board, computer_board, game):
 
 
 def new_game():
-    print("Welcome to Battleships Game\n")
+    print("-"*30)
+    print("Welcome to Battleships Game!")
+    print("Press enter to start")
+    print("-"*30)
+    input("")
     name = get_name()
     size = get_size()
     turns = get_settings(size)["turns"]
     game = Game(turns, name)
-    game.print_scores()
     player_board = Board(name, "Player", size)
     computer_board = Board("Computer", "Computer", size)
     populate_board(player_board)
     populate_board(computer_board)
-    print_boards(player_board,computer_board)
     play_game(player_board,computer_board, game)
     
     
