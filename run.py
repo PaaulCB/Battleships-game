@@ -307,7 +307,9 @@ def validate_name(name):
                 if previous_was_space:
                     raise ValueError("Username cannot have more than one space in a row")
                 previous_was_space = True
-
+            else:
+                previous_was_space = False
+                
         return True#If any error has been triggered return True
     except ValueError as e:
         print(f"\n{e}")#Prints the error and return False
