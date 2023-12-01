@@ -154,10 +154,9 @@ class Board():
         If the type it's "Player" shows the ship on the board.
         """
         self.ships.append(ship)
-        #commented for testings
-        #if self.type == "Player":
-        for i in ship.coordinates:
-            self.board[i[0]][i[1]] = "O"
+        if self.type == "Player":
+            for i in ship.coordinates:
+                self.board[i[0]][i[1]] = "O"
 
 def random_coordinate(size, type):
     """
