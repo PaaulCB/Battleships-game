@@ -245,14 +245,13 @@ def populate_board(board):
     generate_ships(board, settings["small_ships"], 1)#Small ships
 
 
-def print_boards(player_board, computer_board):
+def print_boards(*boards):
     """
     Prints the boards passed as parameters
     """
-    print(f"\n{player_board.name}'s Board")
-    player_board.print()
-    print(f"\n{computer_board.name}'s Board")
-    computer_board.print()
+    for board in boards:
+        print(f"\n{board.name}'s Board")
+        board.print()
 
 
 def get_winner(game):
@@ -309,7 +308,7 @@ def validate_name(name):
                 previous_was_space = True
             else:
                 previous_was_space = False
-                
+
         return True#If any error has been triggered return True
     except ValueError as e:
         print(f"\n{e}")#Prints the error and return False
