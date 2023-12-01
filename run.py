@@ -2,7 +2,7 @@ from pprint import pprint
 from random import randint
 #Constant that stores the number of ships and turns for every board size
 GAME_SETTINGS = [
-    {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":2},
+    {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":10},
     {"size":5, "small_ships":3, "medium_ships":1, "big_ships":0, "turns":15},
     {"size":6, "small_ships":4, "medium_ships":2, "big_ships":0, "turns":20},
     {"size":7, "small_ships":5, "medium_ships":2, "big_ships":1, "turns":30},
@@ -285,7 +285,7 @@ def validate_name(name):
         if not name:#Checks if name it's empty
             raise ValueError("Username cannot be empty.")
         
-        for c in name:#Checks all the characthers are digit, letter or space.
+        for c in name:#Checks if all the characthers are digit, letter or space.
             if c.isalpha() or c.isspace() or c.isdigit():
                 continue
             else:
@@ -295,8 +295,20 @@ def validate_name(name):
             raise ValueError("Username too short.")
         elif len(name) > 11:#Checks if name has more then 11 characters
             raise ValueError("Username too long.")
-        return True#If any error has been triggered return True
+        
+        
+        #Checks if name starts or ends with space
+        if name[0].isspace() or name[-1].isspace():
+            raise ValueError("Username cannot start or end with a space.") 
 
+        previous_was_space = False
+        for c in name:#Checks if there are 2 space in a row.
+            if c.isspace():
+                if previous_was_space:
+                    raise ValueError("Username cannot have more than one space in a row")
+                previous_was_space = True
+
+        return True#If any error has been triggered return True
     except ValueError as e:
         print(f"\n{e}")#Prints the error and return False
         return False
