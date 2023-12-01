@@ -396,12 +396,26 @@ def get_guess(board):
     return [x, y]
 
 
+def get_computer_guess(board):
+    """
+    Generate a random coordinate with the function random_coordinate until it's valid. 
+    """
+    invalid = board.sunked+board.misses
+    while True:
+        guess=random_coordinate(board.size, 1)
+        if guess in invalid:
+            continue
+        else:
+            break
+    return guess
+        
+
 def play_round(player_board, computer_board, game):
     """
     Play a round of the game
     """
     guess = get_guess(computer_board)
-    random_guess = random_coordinate(player_board.size, 1)
+    random_guess = get_computer_guess(player_board)
     print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]),game)}")
     print("Computer "+player_board.guess(int(random_guess[0]),int(random_guess[1]),game))
     game.print_scores()
