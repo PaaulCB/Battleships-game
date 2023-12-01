@@ -112,9 +112,15 @@ class Board():
     def print(self):
         """
         Prints the board separeted by an empty space to the terminal
+        Also shows the column and row numbers
         """
-        for row in self.board:
-            print(" ".join(row))
+        column_num = "  "
+        for i in range(self.size):
+            column_num += f"{i} "
+        print(column_num) 
+        for i, row in enumerate(self.board):
+            row_to_print = " ".join(row)
+            print(f"{i} {row_to_print}")
 
 
     def guess(self, x, y, game):
