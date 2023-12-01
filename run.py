@@ -426,7 +426,6 @@ def play_round(player_board, computer_board, game):
     print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]),game)}")
     print(f"{computer_board.name} {player_board.guess(int(random_guess[0]),int(random_guess[1]),game)}")
     decrease_turns(game)
-    print("*"*30+"\n")
 
 
 def play_game(player_board, computer_board, game):
@@ -461,6 +460,7 @@ def play_game(player_board, computer_board, game):
             game.turns_remaining()
             print("--Current scores--")
             game.print_scores()
+            print("*"*30)
             print_boards(player_board, computer_board)
 
     print("\n\n"+game_over_message)
