@@ -256,9 +256,9 @@ def get_winner(game):
     if(game.player_score == game.computer_score):
         print("It's a tie")
     elif(game.player_score > game.computer_score):
-        print(f"{game.player_name} wins")
+        print(f"{game.player_name} wins!")
     else:
-        print("Computer wins")
+        print("Computer wins!")
 
 
 
@@ -426,10 +426,6 @@ def play_round(player_board, computer_board, game):
     print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]),game)}")
     print(f"{computer_board.name} {player_board.guess(int(random_guess[0]),int(random_guess[1]),game)}")
     decrease_turns(game)
-    game.turns_remaining()
-    print("--Current scores--")
-    game.print_scores()
-    print_boards(player_board, computer_board)
     print("*"*30+"\n")
 
 
@@ -448,10 +444,29 @@ def play_game(player_board, computer_board, game):
     print("\nGood Luck!")
     print("-"*30+"\n\n")
     game_over = False
+    game_over_message ="*"*30+"\n"+"*"*10+"GAME**OVER"+"*"*10+"\n"+"*"*30
     while(not game_over):
         play_round(player_board, computer_board, game)
-        if (not player_board.ships or not computer_board.ships) or game.turns == 0:
+        if not player_board.ships:
             game_over = True
+            game_over_message+=f"\nAll {player_board.name}'s ships sunked"
+        elif not computer_board.ships:
+            game_over = True
+            game_over_message+=f"\nAll Computers's ships sunked"
+        elif game.turns == 0:
+            game_over = True
+            game_over_message+="\nTimes up!"
+        
+        if not game_over:
+            game.turns_remaining()
+            print("--Current scores--")
+            game.print_scores()
+            print_boards(player_board, computer_board)
+
+    print("\n\n"+game_over_message)
+    
+    print_boards(player_board, computer_board)
+    print("\n--Finals scores--")           
     game.print_scores()
     get_winner(game)
 
