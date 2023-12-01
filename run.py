@@ -2,7 +2,7 @@ from pprint import pprint
 from random import randint
 #Constant that stores the number of ships and turns for every board size
 GAME_SETTINGS = [
-    {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":10},
+    {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":2},
     {"size":5, "small_ships":3, "medium_ships":1, "big_ships":0, "turns":15},
     {"size":6, "small_ships":4, "medium_ships":2, "big_ships":0, "turns":20},
     {"size":7, "small_ships":5, "medium_ships":2, "big_ships":1, "turns":30},
@@ -154,9 +154,16 @@ class Board():
         If the type it's "Player" shows the ship on the board.
         """
         self.ships.append(ship)
-        if self.type == "Player":
+    
+
+    def show_ships(self):
+        """
+        Show the ships on the board
+        """
+        for ship in self.ships:
             for i in ship.coordinates:
-                self.board[i[0]][i[1]] = "O"
+                    self.board[i[0]][i[1]] = "O"
+
 
 def random_coordinate(size, type):
     """
@@ -463,7 +470,7 @@ def play_game(player_board, computer_board, game):
             print_boards(player_board, computer_board)
 
     print("\n\n"+game_over_message)
-    
+    computer_board.show_ships()
     print_boards(player_board, computer_board)
     print("\n--Finals scores--")           
     game.print_scores()
@@ -483,6 +490,7 @@ def new_game():
     player_board = Board(name, "Player", size)
     computer_board = Board("Computer", "Computer", size)
     populate_board(player_board)
+    player_board.show_ships()
     populate_board(computer_board)
     play_game(player_board,computer_board, game)
     
