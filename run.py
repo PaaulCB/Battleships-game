@@ -16,11 +16,13 @@ class Game():
     """
     Creates an instance of Game
     """
-    def __init__(self, turns, name):
+    def __init__(self, turns, name,player_board,computer_board):
         self.turns = turns
         self.player_name = name
         self.player_score = 0
         self.computer_score = 0
+        self.player_board = player_board
+        self.computer_board = computer_board
     
 
     def print_scores(self):
@@ -435,40 +437,40 @@ def get_computer_guess(board):
     return guess
         
 
-def play_round(player_board, computer_board, game):
+def play_round(game):
     """
     Play a round of the game
     """
-    guess = get_guess(computer_board)
-    random_guess = get_computer_guess(player_board)
+    guess = get_guess(game.computer_board)
+    random_guess = get_computer_guess(game.player_board)
     print("\n"+"*"*30)
-    print(f"{player_board.name} {computer_board.guess(int(guess[0]),int(guess[1]),game)}")
-    print(f"{computer_board.name} {player_board.guess(int(random_guess[0]),int(random_guess[1]),game)}")
+    print(f"{game.player_name} {game.computer_board.guess(int(guess[0]),int(guess[1]),game)}")
+    print(f"Computer {game.player_board.guess(int(random_guess[0]),int(random_guess[1]),game)}")
     decrease_turns(game)
 
 
-def play_game(player_board, computer_board, game):
+def play_game(game):
     """
     Play the game
     """
-    settings=get_settings(player_board.size)
+    settings=get_settings(game.player_board.size)
     print("\n\n"+"-"*30)
     print(f"Turns limit for the game: {game.turns}")
     print("Each board has:\n")
     print(f"{settings['small_ships']} Small ships with a value of 3 points each")
     print(f"{settings['medium_ships']} Medium ships with a value of 2 points each")
     print(f"{settings['big_ships']} Big ships with a value of 1 points each")
-    print_boards(player_board,computer_board)
+    print_boards(game.player_board,game.computer_board)
     print("\nGood Luck!")
     print("-"*30+"\n\n")
     game_over = False
     game_over_message ="*"*30+"\n"+"*"*10+"GAME**OVER"+"*"*10+"\n"+"*"*30
     while(not game_over):
-        play_round(player_board, computer_board, game)
-        if not player_board.ships:
+        play_round(game)
+        if not game.player_board.ships:
             game_over = True
-            game_over_message+=f"\nAll {player_board.name}'s ships sunked"
-        elif not computer_board.ships:
+            game_over_message+=f"\nAll {game.player_name}'s ships sunked"
+        elif not game.computer_board.ships:
             game_over = True
             game_over_message+=f"\nAll Computers's ships sunked"
         elif game.turns == 0:
@@ -480,11 +482,11 @@ def play_game(player_board, computer_board, game):
             print("--Current scores--")
             game.print_scores()
             print("*"*30)
-            print_boards(player_board, computer_board)
+            print_boards(game.player_board, game.computer_board)
 
     print("\n\n"+game_over_message)
-    computer_board.show_ships()
-    print_boards(player_board, computer_board)
+    game.computer_board.show_ships()
+    print_boards(game.player_board, game.computer_board)
     print("\n--Finals scores--")           
     game.print_scores()
     get_winner(game)
@@ -499,13 +501,13 @@ def new_game():
     name = get_name()
     size = get_size()
     turns = get_settings(size)["turns"]
-    game = Game(turns, name)
     player_board = Board(name, "Player", size)
     computer_board = Board("Computer", "Computer", size)
-    populate_board(player_board)
-    player_board.show_ships()
-    populate_board(computer_board)
-    play_game(player_board,computer_board, game)
+    game = Game(turns, name, player_board,computer_board)
+    populate_board(game.player_board)
+    game.player_board.show_ships()
+    populate_board(game.computer_board)
+    play_game(game)
     
     
 
