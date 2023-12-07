@@ -5,10 +5,10 @@ GAME_SETTINGS = [
     {"size":4, "small_ships":2, "medium_ships":0, "big_ships":0, "turns":10},
     {"size":5, "small_ships":3, "medium_ships":1, "big_ships":0, "turns":15},
     {"size":6, "small_ships":4, "medium_ships":2, "big_ships":0, "turns":20},
-    {"size":7, "small_ships":5, "medium_ships":2, "big_ships":1, "turns":30},
-    {"size":8, "small_ships":6, "medium_ships":2, "big_ships":2, "turns":40},
-    {"size":9, "small_ships":7, "medium_ships":3, "big_ships":2, "turns":50},
-    {"size":10, "small_ships":8, "medium_ships":3, "big_ships":3, "turns":60}
+    {"size":7, "small_ships":5, "medium_ships":2, "big_ships":1, "turns":25},
+    {"size":8, "small_ships":6, "medium_ships":2, "big_ships":2, "turns":35},
+    {"size":9, "small_ships":7, "medium_ships":3, "big_ships":2, "turns":40},
+    {"size":10, "small_ships":8, "medium_ships":3, "big_ships":3, "turns":50}
 ]
 
 
@@ -449,6 +449,46 @@ def play_round(game):
     decrease_turns(game)
 
 
+def validate_play_again(answer):
+    """
+    Returns False if answer is empty 
+    or if it's not "n", "N", "y" or "Y". 
+    Also prints a descriptive error.
+    Otherwise return True.
+    """
+    try:
+
+        if not answer: #Checks if answer it's empty
+            raise ValueError("Input cannot be empty (Valids inputs: Y, y, N, n)")
+        if answer.upper() not in ["Y", "N"]: #Checks if the answer has a valid value
+            raise ValueError(f"{answer} is not a valid input (Valids inputs: Y, y, N, n)")
+        return True #If none errors has been triggered return True
+    except ValueError as e:
+        print(f"\n{e}")#Prints the error and return False
+        return False 
+
+
+def play_again():
+    """
+    Checks if the player wants to keep playing
+    Ask for "N" or "Y" and after validating if the input it's valid
+    if the player introduced "Y" starts a new game
+    if introduced "N" prints a thanks for playing messege 
+    """
+    keep_playing=input("Introduce Y to play again or N to stop\n")
+    while True: #Validate keep_playing
+        if validate_play_again(keep_playing): 
+            break
+        else:
+            keep_playing=input("Introduce Y to play again or N to stop\n")
+
+    if(keep_playing.upper() == "Y"):
+        print("\n\n\n")
+        new_game() #Starts a new game
+    else:
+        print("Thanks for playing!")
+
+
 def play_game(game):
     """
     Play the game
@@ -490,6 +530,7 @@ def play_game(game):
     print("\n--Finals scores--")           
     game.print_scores()
     get_winner(game)
+    play_again()
 
 
 def new_game():
