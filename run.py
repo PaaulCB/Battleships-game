@@ -382,17 +382,15 @@ def validate_guess(x, y, board):
     Otherwise return True.
     """
     try:
-        if not x or not y:#Check if x or y are empty
+        if not x or not y:#Checks if x or y are empty
             raise ValueError("Row and column cannot be empty.")
 
         if not x.isdigit() or not y.isdigit():#Checks if x or y are digits
             raise TypeError("Row and column must be intenger numbers.")
-        
-        if int(x) < 0 or int(x) > board.size - 1:#Checks if x has a valid range 
-            raise ValueError(f"Row and column must be between 0 - {board.size - 1}.")
-        
-        if int(y) < 0 or int(y) > board.size - 1:#Checks if y has a valid range 
-            raise ValueError(f"Row and column must be between 0 - {board.size - 1}.") 
+        # Checks if x and y have a valid range
+        if not (0 <= int(x) < board.size and 0 <= int(y) < board.size):
+            raise ValueError(f"Row and column must be between 0 and {board.size - 1}.")
+ 
         if is_invalid([int(x), int(y)] , board.sunked):
             raise ValueError(f"You have already sunk a ship on [{x}, {y}]") 
         if is_invalid([int(x), int(y)] , board.misses):
