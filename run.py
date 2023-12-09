@@ -24,7 +24,9 @@ class Game():
         self.computer_board = computer_board
 
     def print_scores(self):
-        """Prints the scores"""
+        """
+        Prints the scores
+        """
         print(
             f"{self.player_name}: {self.player_score}"
             f" Computer: {self.computer_score}"
@@ -114,10 +116,12 @@ class Board():
         Prints the board separeted by an empty space to the terminal
         Also shows the column and row numbers
         """
+        # Prints the column numbers
         column_num = "  "
         for i in range(self.size):
             column_num += f"{i} "
         print(column_num)
+        # Prints the board along with the row numbers
         for i, row in enumerate(self.board):
             row_to_print = " ".join(row)
             print(f"{i} {row_to_print}")
@@ -127,31 +131,45 @@ class Board():
         Iterate through the coordinates of the ships in the ships attribute and
         if the guess its correct changes all the coordinates of the hitted ship
         add the coordinates to the sunked attribute, remove the ship from
-        the ships attribute and return "Hit".
+        the ships attribute and return a hit message.
         If not, mark the guess as fail, add the guess to the misses attribute
-        and return "Miss"
+        and return a miss message
         """
+        # Loops through each ship of the board
         for ship in self.ships:
+            # Checks if [x, y] it's on the ship coordinates
             if [x, y] in ship.coordinates:
+                # Loops through each coordinate of the ship
                 for coordinate in ship.coordinates:
+                    # Replaces the coordinate on the board with "\u00D8"
                     self.board[coordinate[0]][coordinate[1]] = "\u00D8"
+                    # Adds the coordinate to the sunked attribute
                     self.sunked.append(coordinate)
+                # Gets the ship type
                 type = ship.get_type()
+                # Gets the ship value
                 value = ship.get_value()
+                # Checks if it's a player or computer board
                 if self.type == "Player":
+                    # Increments computer score
                     game.increment_score("Computer", value)
                 else:
+                    # Increments player score
                     game.increment_score("Player", value)
+                # Removes the ship form the ships attribute
                 self.ships.remove(ship)
+                # Returns a hit message
                 return f"hit a {type} and gains {value} points"
+        # Replaces the coordinate on the board with "X"
         self.board[x][y] = "X"
+        # Adds the coordinate to the misses attribute
         self.misses.append([x, y])
+        # Returns a miss message
         return "miss the shot"
 
     def add_ship(self, ship):
         """
-        Add ships to the board.
-        If the type it's "Player" shows the ship on the board.
+        Add ships to the board
         """
         self.ships.append(ship)
 
@@ -168,7 +186,7 @@ def random_coordinate(size, type):
     """
     Return a random coordinate accordly to the size and type.
     The type variable avoid getting a coordinate that are off the board
-    for mediums and big ships.
+    for medium and big ships.
     """
     if (type == 1):
         return [randint(0, size - 1), randint(0, size - 1)]
@@ -180,7 +198,7 @@ def random_coordinate(size, type):
 
 def get_invalid_ship_position(board):
     """
-    Return a list with the coordenates of the ships that are on the board
+    Return a list with the coordinates of the ships that are on the board
     """
     invalid_coordinates = []
     for ship in board.ships:
@@ -236,7 +254,7 @@ def get_settings(size):
 
 def populate_board(board):
     """
-    Popupate the board accordly to the size using the GAME_SETTINGS constant
+    Populates the board accordly to the size using the GAME_SETTINGS constant
     """
     settings = get_settings(board.size)
     generate_ships(board, settings["big_ship"], 3)  # Big ships
@@ -448,7 +466,10 @@ def get_computer_guess(board):
 
 def play_round(game):
     """
-    Play a round of the game
+    Play a round of the game.
+    Gets the player and computer guesses and with the guess method
+    checks if the hit or not.
+    After that decrease the game turns by one.
     """
     guess = get_guess(game.computer_board)
     # r_guess stands for random guess
@@ -512,11 +533,19 @@ def play_again():
 
 def play_game(game):
     """
-    Play the game
+    Plays a game of Battleships game with turns limit.
+    Prints game turns limits and information about the ships on this game
+    Plays a round of the game until turns reaches 0,
+    or player or computer runs out of ships.
+    When that happens shows the game_over_message, scores, winner, boards
+    and checks if the user wants to play again.
     """
+    # Gets the settings for this game
     settings = get_settings(game.player_board.size)
     print("\n\n"+"-"*30)
+    # Prints the turns limit for this game
     print(f"Turns limit for the game: {game.turns}")
+    # Prints the number and the value of each type of ship on the board
     print("\nEach board has:")
     print(
         f"{settings['small_ship']} Small ships with a value of 3 points each"
@@ -527,13 +556,19 @@ def play_game(game):
     print(
         f"{settings['big_ship']} Big ships with a value of 1 point each"
         )
+    # Prints player and computer boards
     print_boards(game.player_board, game.computer_board)
     print("\nGood Luck!")
     print("-"*30+"\n\n")
     game_over = False
     game_over_message = "*"*30+"\n"+"*"*10+"GAME**OVER"+"*"*10+"\n"+"*"*30
+    # Plays a round of the game until game_over it's True
     while not game_over:
+        # Play a round of the game
         play_round(game)
+        # If the player or computer ships attribute are empty
+        # or the turns reaches 0
+        # Set game_over to True and add a custom message to game_over_message
         if not game.player_board.ships:
             game_over = True
             game_over_message += f"\nAll {game.player_name}'s ships sunked"
@@ -543,40 +578,64 @@ def play_game(game):
         elif game.turns == 0:
             game_over = True
             game_over_message += "\nTimes up!"
-
+        # If the game_over still False
+        # Prints the ramaining turns, scores, and the boards
         if not game_over:
             game.turns_remaining()
             print("--Current scores--")
             game.print_scores()
             print("*"*30)
             print_boards(game.player_board, game.computer_board)
-
+            print("")
+    # Prints game_over_message
     print("\n\n"+game_over_message)
+    # Shows the ships on the computer board
     game.computer_board.show_ships()
+    # Prints the boards
     print_boards(game.player_board, game.computer_board)
+    # Prints the final scores
     print("\n--Finals scores--")
     game.print_scores()
+    # Prints the winner
     get_winner(game)
     print("\n\n")
+    # Checks if the user wants to play again
     play_again()
 
 
 def new_game():
+    """
+    This function starts a new game.
+    Gets the username, board size and game turns.
+    Initialize player and computer boards, and the game class.
+    Populates the boards and shows the ships on the player board.
+    Calls play_game() to start playing the game.
+    """
+    # Welcome message
     print("-"*30)
     print("Welcome to Battleships Game!")
     print("Press enter to start")
     print("-"*30)
     input("")
+    # Gets the username
     name = get_name()
+    # Gets the board size
     size = get_size()
+    # Gets the turns
     turns = get_settings(size)["turns"]
+    # Initialize player and computer boards, and game classes
     player_board = Board(name, "Player", size)
     computer_board = Board("Computer", "Computer", size)
     game = Game(turns, name, player_board, computer_board)
+    # Populates the player_board
     populate_board(game.player_board)
+    # Shows the ships on the player_board
     game.player_board.show_ships()
+    # Populate computer_board
     populate_board(game.computer_board)
+    # Start to play the game
     play_game(game)
 
 
+# Starts a new game
 new_game()
