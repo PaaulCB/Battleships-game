@@ -106,6 +106,7 @@ class Board():
         self.name = name
         self.type = type
         self.size = size
+        # Code taken from code institute portfolio project 3 scope video
         self.board = [["." for x in range(size)] for y in range(size)]
         self.ships = []
         self.misses = []
