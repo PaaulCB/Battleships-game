@@ -363,7 +363,7 @@ def validate_size(size):
         if not size:  # Checks if size it's empty
             raise ValueError("Size cannot be empty.")
         if not size.isdigit():  # Checks if size it's an positive integer
-            raise TypeError("Size must be an positive intenger number.")
+            raise TypeError("Size must be a positive intenger number.")
         if int(size) < 4 or int(size) > 11:  # Checks if size it's between 4-11
             raise ValueError("Invalid size option")
 
