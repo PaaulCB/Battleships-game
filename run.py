@@ -355,20 +355,24 @@ def get_name():
 
 def validate_size(size):
     """
-    Returns False if the size it's empty, or
+    Returns False if the size it's empty, not positive integer or
     if is not between 4-11. Also prints a descriptive error.
     Otherwise return True.
     """
     try:
         if not size:  # Checks if size it's empty
             raise ValueError("Size cannot be empty.")
-
+        if not size.isdigit():  # Checks if size it's an positive integer
+            raise TypeError("Size must be an positive intenger number.")
         if int(size) < 4 or int(size) > 11:  # Checks if size it's between 4-11
             raise ValueError("Invalid size option")
 
         return True  # If none errors has been triggered return True
 
     except ValueError as e:
+        print(f"\n{e}")  # Prints the error and return False
+        return False
+    except TypeError as e:
         print(f"\n{e}")  # Prints the error and return False
         return False
 
