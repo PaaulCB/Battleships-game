@@ -33,7 +33,111 @@
     8|Turns: **35** Small ships: **6** Medium ships: **2** Big ships: **2** Random generated **8x8** board for player and computer (Only shows the ships on the player's board. Also shows username above player board)|Introduced "8"|![Board size 8](assets/images/board_size_8.png)|Yes
     9|Turns: **40** Small ships: **7** Medium ships: **3** Big ships: **2** Random generated **9x9** board for player and computer (Only shows the ships on the player's board. Also shows username above player board)|Introduced "9"|![Board size 9](assets/images/board_size_9.png)|Yes
     10|Turns: **50** Small ships: **8** Medium ships: **3** Big ships: **3** Random generated **10x10** board for player and computer (Only shows the ships on the player's board. Also shows username above player board)|Introduced "10"|![Board size 10](assets/images/board_size_10.png)|Yes
-    
+
+- Row and Columns
+
+    **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
+    ---|---|---|---|:---:
+    Row empty|Row and column cannot be empty. And be asked to introduce a valid column and row.|Introduced "2" for column and empty for row|Row and column cannot be empty. And got asked to introduce a valid column and row.|Yes
+    Column empty|Row and column cannot be empty. And be asked to introduce a valid column and row.|Introduced empty for column and "3" for row|Row and column cannot be empty. And got asked to introduce a valid column and row.|Yes
+    Row not intenger|Row and column must be integer numbers. And be asked to introduce a valid column and row.|Introduced "3" for column and "a" for row|Row and column must be integer numbers. And got asked to introduce a valid column and row.|Yes
+    Column not intenger|Row and column must be integer numbers. And be asked to introduce a valid column and row.|Introduced "a" for column and "0" for row|Row and column must be integer numbers. And got asked to introduce a valid column and row.|Yes
+    Column and row that already missed|You already missed a shot on "Coordinate introduced". And be asked to introduce a valid column and row.|Introduced "0" for column and "0" for row, made sure it missed and introduced the same again|You already missed a shot on [0, 0]. And got asked to introduce a valid column and row.|Yes
+    Column and row were it's a sunked ship|You have already sunk a ship on "Coordinate introduced". And be asked to introduce a valid column and row.|Introduced "1" for column and "0" for row, made sure it hitted and introduced the same again|You have already sunk a ship on [1, 0]. And got asked to introduce a valid column and row.|Yes
+
+- Row and column range per board size
+
+    - Board size 4
+
+        **Test**|**Expected outcome**|**Outcome**|**Test passed**
+        ---|---|---|:---:
+        [0,0]|No errors|No errors|Yes
+        [1,1]|No errors|No errors|Yes
+        [2,2]|No errors|No errors|Yes
+        [3,3]|No errors|No errors|Yes
+        [4,4]|Row and column must be between 0 and 3. And be asked to introduce a valid column and row.|Row and column must be between 0 and 3. And got asked to introduce a valid column and row.|Yes
+        
+    - Board size 5
+
+        **Test**|**Expected outcome**|**Outcome**|**Test passed**
+        ---|---|---|:---:
+        [0,0]|No errors|No errors|Yes
+        [1,1]|No errors|No errors|Yes
+        [2,2]|No errors|No errors|Yes
+        [3,3]|No errors|No errors|Yes
+        [4,4]|No errors|No errors|Yes
+        [5,5]|Row and column must be between 0 and 4. And be asked to introduce a valid column and row.|Row and column must be between 0 and 4. And got asked to introduce a valid column and row.|Yes
+
+    - Board size 6
+
+        **Test**|**Expected outcome**|**Outcome**|**Test passed**
+        ---|---|---|:---:
+        [0,0]|No errors|No errors|Yes
+        [1,1]|No errors|No errors|Yes
+        [2,2]|No errors|No errors|Yes
+        [3,3]|No errors|No errors|Yes
+        [4,4]|No errors|No errors|Yes
+        [5,5]|No errors|No errors|Yes
+        [6,6]|Row and column must be between 0 and 5. And be asked to introduce a valid column and row.|Row and column must be between 0 and 5. And got asked to introduce a valid column and row.|Yes
+
+    - Board size 7
+
+        **Test**|**Expected outcome**|**Outcome**|**Test passed**
+        ---|---|---|:---:
+        [0,0]|No errors|No errors|Yes
+        [1,1]|No errors|No errors|Yes
+        [2,2]|No errors|No errors|Yes
+        [3,3]|No errors|No errors|Yes
+        [4,4]|No errors|No errors|Yes
+        [5,5]|No errors|No errors|Yes
+        [6,6]|No errors|No errors|Yes
+        [7,7]|Row and column must be between 0 and 6. And be asked to introduce a valid column and row.|Row and column must be between 0 and 6. And got asked to introduce a valid column and row.|Yes
+
+    - Board size 8
+
+        **Test**|**Expected outcome**|**Outcome**|**Test passed**
+        ---|---|---|:---:
+        [0,0]|No errors|No errors|Yes
+        [1,1]|No errors|No errors|Yes
+        [2,2]|No errors|No errors|Yes
+        [3,3]|No errors|No errors|Yes
+        [4,4]|No errors|No errors|Yes
+        [5,5]|No errors|No errors|Yes
+        [6,6]|No errors|No errors|Yes
+        [7,7]|No errors|No errors|Yes
+        [8,8]|Row and column must be between 0 and 7. And be asked to introduce a valid column and row.|Row and column must be between 0 and 7. And got asked to introduce a valid column and row.|Yes
+
+    - Board size 9
+
+        **Test**|**Expected outcome**|**Outcome**|**Test passed**
+        ---|---|---|:---:
+        [0,0]|No errors|No errors|Yes
+        [1,1]|No errors|No errors|Yes
+        [2,2]|No errors|No errors|Yes
+        [3,3]|No errors|No errors|Yes
+        [4,4]|No errors|No errors|Yes
+        [5,5]|No errors|No errors|Yes
+        [6,6]|No errors|No errors|Yes
+        [7,7]|No errors|No errors|Yes
+        [8,8]|No errors|No errors|Yes
+        [9,9]|Row and column must be between 0 and 8. And be asked to introduce a valid column and row.|Row and column must be between 0 and 8. And got asked to introduce a valid column and row.|Yes
+
+    - Board size 10
+
+        **Test**|**Expected outcome**|**Outcome**|**Test passed**
+        ---|---|---|:---:
+        [0,0]|No errors|No errors|Yes
+        [1,1]|No errors|No errors|Yes
+        [2,2]|No errors|No errors|Yes
+        [3,3]|No errors|No errors|Yes
+        [4,4]|No errors|No errors|Yes
+        [5,5]|No errors|No errors|Yes
+        [6,6]|No errors|No errors|Yes
+        [7,7]|No errors|No errors|Yes
+        [8,8]|No errors|No errors|Yes
+        [9,9]|No errors|No errors|Yes
+        [10,10]|Row and column must be between 0 and 9. And be asked to introduce a valid column and row.|Row and column must be between 0 and 9. And got asked to introduce a valid column and row.|Yes
+
 
 ### Validator testing
 
