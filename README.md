@@ -138,7 +138,54 @@
         [9,9]|No errors|No errors|Yes
         [10,10]|Row and column must be between 0 and 9. And be asked to introduce a valid column and row.|Row and column must be between 0 and 9. And got asked to introduce a valid column and row.|Yes
 
+- Hits and misses
 
+    **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
+    ---|---|---|---|:---:
+    Player hit|**Username** hit a **type of ship** and gains **amount of points**. Computer miss/hit. Turns remaining. Current scores. Mark the hit on the computer board with a "Ø"|Played rounds until I hitted a ship **[2,2]**|![Player hit](assets/images/player_hit.png)|Yes
+    Computer hit|Player miss/hit. Computer hit a **type of ship** and gains **amount of points**. Turns remaining. Current scores. Mark the hit on the player board with a "Ø"|Played rounds until computer hitted a ship **[1,3]**|![Computer hit](assets/images/computer_hit.png)|Yes 
+    Player miss|**Username** miss the shot. Computer miss/hit. Turns remaining. Current scores. Mark the miss on the computer board with a "X"|Played rounds until I missed a ship **[0,0]**|![Player miss](assets/images/player_miss.png)|Yes 
+    Computer miss|Player miss/hit. Computer miss the shot. Turns remaining. Current scores. Mark the miss on the player board with a "X"|Played rounds until computer missed a ship **[3,1]**|![Computer miss](assets/images/computer_miss.png)|Yes
+
+- Possibles game endings
+
+    To make the testing process faster, I have been changing the **GAME_SETTINGS** constant on my local proyect.
+
+    - Player wins
+
+        **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
+        ---|---|---|---|:---:
+        No more turns|"GAME OVER Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "**Username** wins!"|Set turns, small ships and medium ships to 2 and played games until I won|![Player win when no more rounds](assets/images/player_win_1.png)|Yes
+        All computer ships sunked|"GAME OVER All Computers's ships sunked" Shows both boards. Shows the final scores and "**Username** wins!"|Played games until I sunk all the computer ships|![Player win by sunking all computer ships](assets/images/player_win_2.png)|Yes
+        All computer ships sunked|"GAME OVER All Computers's ships sunked Times up!" Shows both boards. Shows the final scores and "**Username** wins!"|Set turns and small ships to 1 and played games until I won|![Player win by sunking all computer ships on last round](assets/images/player_win_3.png)|Yes
+    
+    - Computer wins
+
+        **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
+        ---|---|---|---|:---:
+        No more turns|"GAME OVER Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "Computer wins"|Set turns, small ships and medium ships to 2 and played games until computer won|![Computer win when no more rounds](assets/images/computer_win_1.png)|Yes
+        All player ships sunked|"GAME OVER All **Username** ships sunked" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "Computer wins"|Played games until computer sunk all the player ships|![Computer win by sunking all player ships](assets/images/computer_win_2.png)|Yes
+        All player ships sunked on last round|"GAME OVER All **Username** ships sunked Times up" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "Computer wins"|Set turns and big ships to 1 and played games until computer won|![Computer win by sunking all player ships on last round](assets/images/computer_win_3.png)|Yes
+
+    - Tie
+
+        **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
+        ---|---|---|---|:---:
+        No more turns|"GAME OVER Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set small ships and turns to 1, and played games until tied|![Tie when no more rounds](assets/images/tie_1.png)|Yes
+        Last ship destroyed on the same round|"GAME OVER All **Username** ships sunked All Computers's ships sunked" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set big ships to 1 and turns to 2, and played games until both hitted|![Tie sunking last ship on same round](assets/images/tie_2.png)|Yes
+        Last ship destroyed on the last round|"GAME OVER All **Username** ships sunked All Computers's ships sunked Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set big ships and turns to 1, and played games until both hitted|![Tie sunking last ship on last round](assets/images/tie_3.png)|Yes
+
+- Play again
+
+    **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
+    ---|---|---|---|:---:
+    Empty|Input cannot be empty (Valids inputs: Y, y, N, n). Introduce Y to play again or N to stop|Introduced empty|Input cannot be empty (Valids inputs: Y, y, N, n). Introduce Y to play again or N to stop|Yes
+    not ["n","N","Y","y"]|**Input** is not a valid input(Valids inputs: Y, y, N, n) Introduce Y to play again or N to stop|Introduced "3"|![Error introducing "3"](assets/images/play_again_test_1.png)|Yes
+    N|Thanks for playing!|Introduced "N"|![Outcome introducing "N"](assets/images/play_again_test_2.png)|Yes
+    n|Thanks for playing!|Introduced "n"|![Outcome introducing "n"](assets/images/play_again_test_3.png)|Yes
+    Y|Starts a new game|Introduced "Y"|![Outcome introducing "Y"](assets/images/play_again_test_4.png)|Yes
+    y|Starts a new game|Introduced "y"|![Outcome introducing "y"](assets/images/play_again_test_5.png)|Yes
+    
 ### Validator testing
 
 - No errors were returned when passing through [CI Python Linter](https://pep8ci.herokuapp.com/)
