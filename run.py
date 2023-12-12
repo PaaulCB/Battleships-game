@@ -577,10 +577,10 @@ def play_game(game):
         if not game.player_board.ships:
             game_over = True
             game_over_message += f"\nAll {game.player_name}'s ships sunked"
-        elif not game.computer_board.ships:
+        if not game.computer_board.ships:
             game_over = True
             game_over_message += f"\nAll Computers's ships sunked"
-        elif game.turns == 0:
+        if game.turns == 0:
             game_over = True
             game_over_message += "\nTimes up!"
         # If the game_over still False
