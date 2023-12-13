@@ -64,7 +64,7 @@ Once the game it's over you can enter **Y** to play again or **N** to stop playi
     Row not intenger|Row and column must be integer numbers. And be asked to introduce a valid column and row.|Introduced "3" for column and "a" for row|Row and column must be integer numbers. And got asked to introduce a valid column and row.|Yes
     Column not intenger|Row and column must be integer numbers. And be asked to introduce a valid column and row.|Introduced "a" for column and "0" for row|Row and column must be integer numbers. And got asked to introduce a valid column and row.|Yes
     Column and row that already missed|You already missed a shot on "Coordinate introduced". And be asked to introduce a valid column and row.|Introduced "0" for column and "0" for row, made sure it missed and introduced the same again|You already missed a shot on [0, 0]. And got asked to introduce a valid column and row.|Yes
-    Column and row were it's a sunked ship|You have already sunk a ship on "Coordinate introduced". And be asked to introduce a valid column and row.|Introduced "1" for column and "0" for row, made sure it hitted and introduced the same again|You have already sunk a ship on [1, 0]. And got asked to introduce a valid column and row.|Yes
+    Column and row were it's a sunk ship|You have already sunk a ship on "Coordinate introduced". And be asked to introduce a valid column and row.|Introduced "1" for column and "0" for row, made sure it hitted and introduced the same again|You have already sunk a ship on [1, 0]. And got asked to introduce a valid column and row.|Yes
 
 - Row and column range per board size
 
@@ -177,24 +177,24 @@ Once the game it's over you can enter **Y** to play again or **N** to stop playi
         **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
         ---|---|---|---|:---:
         No more turns|"GAME OVER Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "**Username** wins!"|Set turns, small ships and medium ships to 2 and played games until I won|![Player win when no more rounds](assets/images/player_win_1.png)|Yes
-        All computer ships sunked|"GAME OVER All Computers's ships sunked" Shows both boards. Shows the final scores and "**Username** wins!"|Played games until I sunk all the computer ships|![Player win by sunking all computer ships](assets/images/player_win_2.png)|Yes
-        All computer ships sunked|"GAME OVER All Computers's ships sunked Times up!" Shows both boards. Shows the final scores and "**Username** wins!"|Set turns and small ships to 1 and played games until I won|![Player win by sunking all computer ships on last round](assets/images/player_win_3.png)|Yes
+        All computer ships sunk|"GAME OVER All Computers's ships sunk" Shows both boards. Shows the final scores and "**Username** wins!"|Played games until I sunk all the computer ships|![Player win by sunking all computer ships](assets/images/player_win_2.png)|Yes
+        All computer ships sunk|"GAME OVER All Computers's ships sunk Times up!" Shows both boards. Shows the final scores and "**Username** wins!"|Set turns and small ships to 1 and played games until I won|![Player win by sunking all computer ships on last round](assets/images/player_win_3.png)|Yes
     
     - Computer wins
 
         **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
         ---|---|---|---|:---:
         No more turns|"GAME OVER Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "Computer wins"|Set turns, small ships and medium ships to 2 and played games until computer won|![Computer win when no more rounds](assets/images/computer_win_1.png)|Yes
-        All player ships sunked|"GAME OVER All **Username** ships sunked" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "Computer wins"|Played games until computer sunk all the player ships|![Computer win by sunking all player ships](assets/images/computer_win_2.png)|Yes
-        All player ships sunked on last round|"GAME OVER All **Username** ships sunked Times up" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "Computer wins"|Set turns and big ships to 1 and played games until computer won|![Computer win by sunking all player ships on last round](assets/images/computer_win_3.png)|Yes
+        All player ships sunk|"GAME OVER All **Username** ships sunk" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "Computer wins"|Played games until computer sunk all the player ships|![Computer win by sunking all player ships](assets/images/computer_win_2.png)|Yes
+        All player ships sunk on last round|"GAME OVER All **Username** ships sunk Times up" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "Computer wins"|Set turns and big ships to 1 and played games until computer won|![Computer win by sunking all player ships on last round](assets/images/computer_win_3.png)|Yes
 
     - Tie
 
         **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
         ---|---|---|---|:---:
         No more turns|"GAME OVER Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set small ships and turns to 1, and played games until tied|![Tie when no more rounds](assets/images/tie_1.png)|Yes
-        Last ship destroyed on the same round|"GAME OVER All **Username** ships sunked All Computers's ships sunked" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set big ships to 1 and turns to 2, and played games until both hitted|![Tie sunking last ship on same round](assets/images/tie_2.png)|Yes
-        Last ship destroyed on the last round|"GAME OVER All **Username** ships sunked All Computers's ships sunked Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set big ships and turns to 1, and played games until both hitted|![Tie sunking last ship on last round](assets/images/tie_3.png)|Yes
+        Last ship destroyed on the same round|"GAME OVER All **Username** ships sunk All Computers's ships sunk" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set big ships to 1 and turns to 2, and played games until both hitted|![Tie sunking last ship on same round](assets/images/tie_2.png)|Yes
+        Last ship destroyed on the last round|"GAME OVER All **Username** ships sunk All Computers's ships sunk Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set big ships and turns to 1, and played games until both hitted|![Tie sunking last ship on last round](assets/images/tie_3.png)|Yes
 
 - Play again
 

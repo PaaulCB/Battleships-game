@@ -110,7 +110,7 @@ class Board():
         self.board = [["." for x in range(size)] for y in range(size)]
         self.ships = []
         self.misses = []
-        self.sunked = []
+        self.sunk = []
 
     def print(self):
         """
@@ -131,7 +131,7 @@ class Board():
         """
         Iterate through the coordinates of the ships in the ships attribute and
         if the guess its correct changes all the coordinates of the hitted ship
-        add the coordinates to the sunked attribute, remove the ship from
+        add the coordinates to the sunk attribute, remove the ship from
         the ships attribute and return a hit message.
         If not, mark the guess as fail, add the guess to the misses attribute
         and return a miss message
@@ -144,8 +144,8 @@ class Board():
                 for coordinate in ship.coordinates:
                     # Replaces the coordinate on the board with "\u00D8"
                     self.board[coordinate[0]][coordinate[1]] = "\u00D8"
-                    # Adds the coordinate to the sunked attribute
-                    self.sunked.append(coordinate)
+                    # Adds the coordinate to the sunk attribute
+                    self.sunk.append(coordinate)
                 # Gets the ship type
                 type = ship.get_type()
                 # Gets the ship value
@@ -422,10 +422,10 @@ def validate_guess(x, y, board):
             raise ValueError(
                 f"Row and column must be between 0 and {board.size - 1}."
                 )
-        # Checks if it's already a ship sunked on the coordinate
-        if is_invalid([int(x), int(y)], board.sunked):
+        # Checks if it's already a ship sunk on the coordinate
+        if is_invalid([int(x), int(y)], board.sunk):
             raise ValueError(f"You have already sunk a ship on [{x}, {y}]")
-        # Checks if it's already a ship sunked on the coordinate
+        # Checks if it's already a ship sunk on the coordinate
         if is_invalid([int(x), int(y)], board.misses):
             raise ValueError(f"You have already missed a shot on [{x}, {y}]")
 
@@ -459,7 +459,7 @@ def get_computer_guess(board):
     """
     Generate a random coordinate with the function random_coordinate
     """
-    invalid = board.sunked+board.misses
+    invalid = board.sunk+board.misses
     while True:
         guess = random_coordinate(board.size, 1)
         if guess in invalid:
@@ -576,10 +576,10 @@ def play_game(game):
         # Set game_over to True and add a custom message to game_over_message
         if not game.player_board.ships:
             game_over = True
-            game_over_message += f"\nAll {game.player_name}'s ships sunked"
+            game_over_message += f"\nAll {game.player_name}'s ships sunk"
         if not game.computer_board.ships:
             game_over = True
-            game_over_message += f"\nAll Computers's ships sunked"
+            game_over_message += f"\nAll Computers's ships sunk"
         if game.turns == 0:
             game_over = True
             game_over_message += "\nTimes up!"
