@@ -191,3 +191,60 @@
 - No errors were returned when passing through [CI Python Linter](https://pep8ci.herokuapp.com/)
 
     ![Python validation](assets/images/python_validator.png)
+
+## Deployment and Local Development
+
+### Deployment
+
+This proyect was deployed using Code Institute's mock terminal for Heroku.
+
+1.  Fork or clone [this repository](https://github.com/PaaulCB/Battleships-game).
+2.  Create a new heroku app
+
+    ![New heroku app](assets/images/deploy_step_1.png)
+
+3.  Go to settings
+
+    ![Settings](assets/images/deploy_step_2.png)
+
+4.  Set the buildpacks to Python and NodeJS in that order
+
+    ![Buildpacks](assets/images/deploy_step_3.png)
+
+5.  Go to deploy and link the heroku app to the repository
+
+    ![Link app with repository](assets/images/deploy_step_4.png)
+
+6.  Click **Enable Automatic Deploys**
+
+### How to clone the repository
+
+1.  Go to [Battleships Game](https://github.com/PaaulCB/Battleships-game).
+2.  Above the list of files, click **Code**.
+
+    ![Code](assets/images/clone-step-1.png)
+
+3.  Copy the URL for the repository.
+
+    ![URL](assets/images/clone-step-2.png)
+
+4.  Open Git Bash.
+5.  Change the current working directory to the location you want the cloned directory.
+6.  Type **git clone**, and then paste the URL you copied earlier.
+
+         git clone https://github.com/PaaulCB/Battleships-game
+
+7.  Press **Enter** to create your local clone.
+
+### How to fork the repository
+
+1. Go to [Battleships game](https://github.com/PaaulCB/Battleships-game).
+2. In the top-right corner of the page, click **Fork**.
+
+   ![Fork](assets/images/fork.png)
+
+3. Under "Owner," select the dropdown menu and click an owner for the forked repository.
+4. By default, forks are named the same as their upstream repositories. Optionally, to further distinguish your fork, in the "Repository name" field, type a name.
+5. Optionally, in the "Description" field, type a description of your fork.
+6. Optionally, select **Copy the DEFAULT branch only**.
+7. Click **Create fork**.
