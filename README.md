@@ -1,5 +1,26 @@
 # Battleships game
 
+## How to play
+
+Battleships game it's inspired by the classic [Battleship (game)](https://en.wikipedia.org/wiki/Battleship_(game)).
+
+In this version, the game has a turn limit depending on the board size chosen by the player, and three different types of ships with varying point values and sizes:
+
+- Big(3x3) = 1 point
+- Medium(2x2) = 2 points
+- Small(1x1) = 3 points
+
+After entering your username and the size of the boards, two boards will be randomly generated, one for each player. The player's ships are indicated on his board with and **O**, while the computer's ships remains hidden.
+
+Then, player and computer by turns try to sink each other's ships.
+
+Hits are marked on the board with **Ø**, while misses are marked with **X**.
+
+The winner it's the first who sinks all opponent's ships or who has the highest score when the turns are over.
+
+Once the game it's over you can enter **Y** to play again or **N** to stop playing.
+
+
 ## Testing
 
 ### Manual testing
