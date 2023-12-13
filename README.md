@@ -20,6 +20,93 @@ The winner it's the first who sinks all opponent's ships or who has the highest 
 
 Once the game it's over you can enter **Y** to play again or **N** to stop playing.
 
+
+## Features
+
+### Existing features
+
+- Random board generation
+
+    - After the player enters the username and the board size, two boards with that size are generated and populated randomly with the correct amount of ships for that board size.
+    - Also shows the information of the ships on this game aswell and the turns limit.
+    - The player cannot see where the computer's ships are placed.
+
+        ![Random board generator](assets/images/board_size_7.png)
+
+- Input validation and error-checking
+    
+    - For the username:
+        - Username cannot be empty
+        - Username only can contain letters, digits or spaces
+        - Cannot start or end with space
+        - Cannot have more two or more spaces in a row
+        - Must be between 4-11 characthers
+    
+        More details on [Username testing](#username)
+
+    - For the size:
+        - Size cannot be empty
+        - Sise must a numeric
+        - Size must be between 4-10
+
+        More details on [Size testing](#size)
+
+    - For the row and column:
+        - Row and column cannot be empty
+        - Row and column must be integer numbers
+        - Row and column must be between 0 and (board size-1)
+        - A row and column that already missed cannot be introduced again
+        - Cannot introduce the row and column of a sunk ship
+
+        More detail on [Row and column testing](#row-and-columns)  
+
+    - For play again:
+        - Must not be empty
+        - Must be 'Y', 'y', 'n' or 'N'
+        
+        More details on [Play again testing](#play-again)
+
+- Data maintained in class instances
+
+    - I have been using Game, Board and Ship Classes to work with the data, such as username, player board, computer board, turns limit...
+    More detail on [Data model](#data-model)
+
+- Different size of ships with differents points value
+
+    - I used 3 types of ships on this proyect:
+        
+        - Small ship: It's a 1x1 ship with a value of 3 points
+        - Medium ship: It's a 2x2 ship with a value of 2 points
+        - Big ship: It's a 3x3 ship with a value of 1 points
+    
+        The small ship have a bigger value than the other ones because it's harder to hit a 1x1 than a 2x2 or 3x3.
+
+- Option to play again when finish
+
+    - Once the game it's over the player have the option to play again or to stop playing.
+
+        ![Play again](assets/images/play_again.png)
+
+- Turns limit game
+
+    - The game has a turn limit based on the size of the board. Once it reches 0 the game finish and who has more points wins.
+
+        ![Turns limit finished](assets/images/player_win_1.png)
+
+- Round information
+
+    - After the player make a guess, a round information will appear to let him know if he hitted or not, if the computer hitted or not, the turns remaing and the scores. Also will print the updated boards with the last hits/misses.
+
+        ![Round information](assets/images/round_information.png)
+
+- Game over information
+
+    - When the game it's over, will show the reason why the game it's over, the final scores, the final boards with the remaing computer ships on it, and the winner.
+
+        ![Gameover information](assets/images/gameover_information.png)
+
+
+
 ## Data model
 
 I decided to use Game, Board and Ship classes as my model
@@ -79,7 +166,7 @@ I decided to use Game, Board and Ship classes as my model
 
 ### Manual testing
 
-- Username
+- #### Username
 
     **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
     ---|---|---|---|:---:
@@ -92,7 +179,7 @@ I decided to use Game, Board and Ship classes as my model
     Two spaces in a row|Username cannot have more than one space in a row. Please introduce a valid username (4-11 characters)|Introduced "Pa&nbsp;&nbsp;ul"|Username cannot have more than one space in a row. Please introduce a valid username (4-11 characters)|Yes
     Valid|Please introduce the size of the board(options availables 4-10)|Introduced "Paul"|Please introduce the size of the board(options availables 4-10)|Yes
 
-- Size
+- #### Size
 
     **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
     ---|---|---|---|:---:
@@ -109,7 +196,7 @@ I decided to use Game, Board and Ship classes as my model
     9|Turns: **40** Small ships: **7** Medium ships: **3** Big ships: **2** Random generated **9x9** board for player and computer (Only shows the ships on the player's board. Also shows username above player board)|Introduced "9"|![Board size 9](assets/images/board_size_9.png)|Yes
     10|Turns: **50** Small ships: **8** Medium ships: **3** Big ships: **3** Random generated **10x10** board for player and computer (Only shows the ships on the player's board. Also shows username above player board)|Introduced "10"|![Board size 10](assets/images/board_size_10.png)|Yes
 
-- Row and Columns
+- #### Row and Columns
 
     **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
     ---|---|---|---|:---:
@@ -120,7 +207,7 @@ I decided to use Game, Board and Ship classes as my model
     Column and row that already missed|You already missed a shot on "Coordinate introduced". And be asked to introduce a valid column and row.|Introduced "0" for column and "0" for row, made sure it missed and introduced the same again|You already missed a shot on [0, 0]. And got asked to introduce a valid column and row.|Yes
     Column and row were it's a sunk ship|You have already sunk a ship on "Coordinate introduced". And be asked to introduce a valid column and row.|Introduced "1" for column and "0" for row, made sure it hitted and introduced the same again|You have already sunk a ship on [1, 0]. And got asked to introduce a valid column and row.|Yes
 
-- Row and column range per board size
+- #### Row and column range per board size
 
     - Board size 4
 
@@ -213,7 +300,7 @@ I decided to use Game, Board and Ship classes as my model
         [9,9]|No errors|No errors|Yes
         [10,10]|Row and column must be between 0 and 9. And be asked to introduce a valid column and row.|Row and column must be between 0 and 9. And got asked to introduce a valid column and row.|Yes
 
-- Hits and misses
+- #### Hits and misses
 
     **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
     ---|---|---|---|:---:
@@ -222,7 +309,7 @@ I decided to use Game, Board and Ship classes as my model
     Player miss|**Username** miss the shot. Computer miss/hit. Turns remaining. Current scores. Mark the miss on the computer board with a "X"|Played rounds until I missed a ship **[0,0]**|![Player miss](assets/images/player_miss.png)|Yes 
     Computer miss|Player miss/hit. Computer miss the shot. Turns remaining. Current scores. Mark the miss on the player board with a "X"|Played rounds until computer missed a ship **[3,1]**|![Computer miss](assets/images/computer_miss.png)|Yes
 
-- Possibles game endings
+- #### Possibles game endings
 
     To make the testing process faster, I have been changing the **GAME_SETTINGS** constant on my local proyect.
 
@@ -250,7 +337,7 @@ I decided to use Game, Board and Ship classes as my model
         Last ship destroyed on the same round|"GAME OVER All **Username** ships sunk All Computers's ships sunk" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set big ships to 1 and turns to 2, and played games until both hitted|![Tie sunking last ship on same round](assets/images/tie_2.png)|Yes
         Last ship destroyed on the last round|"GAME OVER All **Username** ships sunk All Computers's ships sunk Times up!" Shows both boards(with the ships on the computer board aswell). Shows the final scores and "it's a tie"|Set big ships and turns to 1, and played games until both hitted|![Tie sunking last ship on last round](assets/images/tie_3.png)|Yes
 
-- Play again
+- #### Play again
 
     **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
     ---|---|---|---|:---:
