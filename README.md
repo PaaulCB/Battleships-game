@@ -20,6 +20,60 @@ The winner it's the first who sinks all opponent's ships or who has the highest 
 
 Once the game it's over you can enter **Y** to play again or **N** to stop playing.
 
+## Data model
+
+I decided to use Game, Board and Ship classes as my model
+
+- **Ship Class**
+
+    This class it's a superclass for 3 subclasses:
+    
+    - SmallShip
+    - MediumShip
+    - BigShip
+
+    Each subclass have a type and value attribute, and each subclass inherits from Ship class:
+
+    - *coordinates* attribute: Stores the coordinates of the ship on the board. The data it's stored as a list of lists.
+    - *get_type* method: Gets the type of the ship
+    - *get_value* method: Gets the value of the ship
+
+- **Board Class**
+
+    This class stores the following attributes:
+
+    - *name*: Stores the player username
+    - *type*: Stores the type of the board(Player or Computer)
+    - *size*: Stores the size of the board chosen by the player
+    - *board*: Stores a list of list that represents the board
+    - *ships*: Stores instances of Ship
+    - *misses*: Stores the coordinates of the guesses that missed
+    - *sunk*: Stores the coordinates of the ships sunk
+
+    This class also has the following methods:
+
+    - *print*: Prints the board
+    - *guess*: Check if there is a ship on the coordinate passed as paramater
+    - *add_ship*: Add the ship passed as parameter to the ships attribute
+    - *show_ships*: Shows coordinates of the ships on the board attribute.
+
+- ***Game Class**
+
+    This class stores the following attributes:
+
+    - *turns*: Stores the remaining turns of the game
+    - *player_name*: Stores the username of the player
+    - *player_score*: Stores the player's score
+    - *computer_score*: Stores the computer's score
+    - *player_board*: Stores an instance of Board for the player
+    - *computer_board*: Stores an instance of Board for the computer
+
+    This class also has the following methods:
+
+    - *print_scores*: Prints the current scores
+    - *increment_score*: Increments the player or computer score depending on the type parameter.
+    - *turns_remaining*: Prints the turns attribute.
+
 
 ## Testing
 
