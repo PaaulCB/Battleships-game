@@ -36,6 +36,14 @@ Once the game it's over you can enter **Y** to play again or **N** to stop playi
 
 ### Existing features
 
+- Choose username
+
+    - The game allow the user the choose it's own username.
+
+- Choose size
+
+    - The game allow the user to choose the size of the boards.
+
 - Random board generation
 
     - After the player enters the username and the board size, two boards with that size are generated and populated randomly with the correct amount of ships for that board size.
