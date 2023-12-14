@@ -416,11 +416,11 @@ This proyect was deployed using Code Institute's mock terminal for Heroku.
 1.  Go to [Battleships Game](https://github.com/PaaulCB/Battleships-game).
 2.  Above the list of files, click **Code**.
 
-    ![Code](assets/images/clone-step-1.png)
+    ![Code](assets/images/clone_step_1.png)
 
 3.  Copy the URL for the repository.
 
-    ![URL](assets/images/clone-step-2.png)
+    ![URL](assets/images/clone_step_2.png)
 
 4.  Open Git Bash.
 5.  Change the current working directory to the location you want the cloned directory.
@@ -442,3 +442,16 @@ This proyect was deployed using Code Institute's mock terminal for Heroku.
 5. Optionally, in the "Description" field, type a description of your fork.
 6. Optionally, select **Copy the DEFAULT branch only**.
 7. Click **Create fork**.
+
+## Credits
+
+### Content
+
+- [Code Institute Proyect 3 Video](https://www.youtube.com/watch?v=4sqtzZQpDJE) was used as inspiration for this proyect.
+- Code to create the board attribute was taken from [Code Institute Proyect 3 Video](https://www.youtube.com/watch?v=4sqtzZQpDJE)
+- Code to check the if the input it's letter or number taken form  [Stackoverflow](https://stackoverflow.com/questions/40097590/detect-whether-a-python-string-is-a-number-or-a-letter).
+- Syntax to make a table on markdown want taken from [Codecademy](https://www.codecademy.com/resources/docs/markdown/tables).
+- The randint function from the random module was used to generate the computer guess.
+- The steps to fork a repository were taken from [Github docs](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
+- The steps to clone a repository were taken from [Github docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+- [This web](https://ui.dev/amiresponsive) was used to generate the image of the application on differents screen sizes.

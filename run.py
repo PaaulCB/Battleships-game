@@ -1,3 +1,4 @@
+# Used to generate the computer guess
 from random import randint
 # Constant that stores the number of ships and turns for every board size
 GAME_SETTINGS = [
