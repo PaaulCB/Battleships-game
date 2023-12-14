@@ -354,6 +354,19 @@ I decided to use Game, Board and Ship classes as my model
 
     ![Python validation](assets/images/python_validator.png)
 
+### Fixed bugs
+
+-  When i was checking that the username cannot have more the two spaces in a row, it was giving the error message when it shouldn't. (Commit **f682471**)
+
+    I fixed adding:
+            
+            else:
+                previous_was_space = True
+
+- When i was testing the possibles endings of the game i realized that the reason message to end the game was not completly accurate, only showed the first reason instead of all of them. I fixed it by replacing the **elif** with **if**. (Commit **ec774ed**)
+
+### Unfixed bugs
+
 ## Deployment and Local Development
 
 ### Deployment
