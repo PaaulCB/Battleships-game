@@ -1,5 +1,16 @@
 # Battleships game
 
+Battleships game it's a Python terminal game, which runs in the Code Institute mock terminal on Heroku.
+
+The main purpose of this application it's to provide the users a working turn-based battleship game against the computer, where the users can choose their username and the size of the boards. The game also has differents ships sizes and turns limits to make the user experience less monotonous.
+
+This application is valuable to the users because provide them a working battleship game with a turn limit and differents ships sizes and points value, to make it more entretaining and challenging.
+Also encourage the players to keep playing by asking them if they want to play again when they finish.
+
+![Application on differents devices](assets/images/responsive.png)
+
+[Deployed version here](https://the-battleships-game-2ec5af783c54.herokuapp.com/)
+
 ## How to play
 
 Battleships game it's inspired by the classic [Battleship (game)](https://en.wikipedia.org/wiki/Battleship_(game)).
@@ -144,7 +155,7 @@ I decided to use Game, Board and Ship classes as my model
     - *add_ship*: Add the ship passed as parameter to the ships attribute
     - *show_ships*: Shows coordinates of the ships on the board attribute.
 
-- ***Game Class**
+- **Game Class**
 
     This class stores the following attributes:
 
