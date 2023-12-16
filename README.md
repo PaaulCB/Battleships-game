@@ -381,14 +381,11 @@ I decided to use Game, Board and Ship classes as my model
 
 ### Fixed bugs
 
--  When i was checking that the username cannot have more the two spaces in a row, it was giving the error message when it shouldn't. (Commit **f682471**)
-
-    I fixed adding:
-            
-            else:
-                previous_was_space = True
-
-- When i was testing the possibles endings of the game i realized that the reason message to end the game was not completly accurate, only showed the first reason instead of all of them. I fixed it by replacing the **elif** with **if**. (Commit **ec774ed**)
+**Bug**|**Fix**|**Commit**
+---|---|---
+When I was checking that the username cannot have more the two spaces in a row, it was giving the error message when it shouldn't| else: previous_was_space = True|f682471
+When I was testing the possibles endings of the game i realized that the reason message to end the game was not completly accurate, only showed the first reason instead of all of them|replacing the **elif** with **if**|ec774ed
+The display was not as I intented because I forgot to move a print() when I update the gameover message|Moving print() to where should be|4cdfe13
 
 ### Unfixed bugs
 
