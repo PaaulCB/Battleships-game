@@ -32,6 +32,12 @@ The winner it's the first who sinks all opponent's ships or who has the highest 
 Once the game it's over you can enter **Y** to play again or **N** to stop playing.
 
 
+## Design
+
+This it's the flowchart of the application
+
+![Flowchart](assets/images/flowchart.png)
+
 ## Features
 
 ### Existing features
