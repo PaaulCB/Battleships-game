@@ -364,7 +364,7 @@ def validate_size(size):
         if not size:  # Checks if size it's empty
             raise ValueError("Size cannot be empty.")
         if not size.isdigit():  # Checks if size it's an positive integer
-            raise TypeError("Size must be a positive intenger number.")
+            raise TypeError("Size must be a positive integer number.")
         if int(size) < 4 or int(size) > 11:  # Checks if size it's between 4-11
             raise ValueError("Invalid size option")
 
@@ -417,7 +417,7 @@ def validate_guess(x, y, board):
         if not x or not y:  # Check if x or y are empty
             raise ValueError("Row and column cannot be empty.")
         if not x.isdigit() or not y.isdigit():  # Checks if x or y are digits
-            raise TypeError("Row and column must be intenger numbers.")
+            raise TypeError("Row and column must be integer numbers.")
         # Checks if x and y have a valid range
         if not (0 <= int(x) < board.size and 0 <= int(y) < board.size):
             raise ValueError(

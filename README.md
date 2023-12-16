@@ -144,7 +144,7 @@ I decided to use Game, Board and Ship classes as my model
     - MediumShip
     - BigShip
 
-    Each subclass have a type and value attribute, and each subclass inherits from Ship class:
+    Each subclass has a type and value attribute, and each subclass inherits from Ship class:
 
     - *coordinates* attribute: Stores the coordinates of the ship on the board. The data it's stored as a list of lists.
     - *get_type* method: Gets the type of the ship
@@ -209,8 +209,8 @@ I decided to use Game, Board and Ship classes as my model
     **Test**|**Expected outcome**|**Test performed**|**Outcome**|**Test passed**
     ---|---|---|---|:---:
     Empty|Size cannot be empty. Please introduce a valid size (options availables 4-10)|Introduced empty size|Size cannot be empty. Please introduce a valid size (options availables 4-10)|Yes
-    Not numeric|Size must be a positive intenger number. Please introduce a valid size (options availables 4-10)|Introduced "Paul"|Size must be a positive intenger number. Please introduce a valid size (options availables 4-10)|Yes
-    Not positive numeric|Size must be a positive intenger number. Please introduce a valid size (options availables 4-10)|Introduced "-1"|Size must be a positive intenger number. Please introduce a valid size (options availables 4-10)|Yes
+    Not numeric|Size must be a positive integer number. Please introduce a valid size (options availables 4-10)|Introduced "Paul"|Size must be a positive integer number. Please introduce a valid size (options availables 4-10)|Yes
+    Not positive numeric|Size must be a positive integer number. Please introduce a valid size (options availables 4-10)|Introduced "-1"|Size must be a positive integer number. Please introduce a valid size (options availables 4-10)|Yes
     Less than 4|Invalid size option. Please introduce a valid size (options availables 4-10)|Introduced "3"|Invalid size option. Please introduce a valid size (options availables 4-10)|Yes
     Greater than 10|Invalid size option. Please introduce a valid size (options availables 4-10)|Introduced "11"|Invalid size option. Please introduce a valid size (options availables 4-10)|Yes
     4|Turns: **10** Small ships: **2** Medium ships: **0** Big ships: **0** Random generated **4x4** board for player and computer (Only shows the ships on the player's board. Also shows username above player board)|Introduced "4"|![Board size 4](assets/images/board_size_4.png)|Yes
@@ -227,8 +227,8 @@ I decided to use Game, Board and Ship classes as my model
     ---|---|---|---|:---:
     Row empty|Row and column cannot be empty. And be asked to introduce a valid column and row.|Introduced "2" for column and empty for row|Row and column cannot be empty. And got asked to introduce a valid column and row.|Yes
     Column empty|Row and column cannot be empty. And be asked to introduce a valid column and row.|Introduced empty for column and "3" for row|Row and column cannot be empty. And got asked to introduce a valid column and row.|Yes
-    Row not intenger|Row and column must be integer numbers. And be asked to introduce a valid column and row.|Introduced "3" for column and "a" for row|Row and column must be integer numbers. And got asked to introduce a valid column and row.|Yes
-    Column not intenger|Row and column must be integer numbers. And be asked to introduce a valid column and row.|Introduced "a" for column and "0" for row|Row and column must be integer numbers. And got asked to introduce a valid column and row.|Yes
+    Row not integer|Row and column must be integer numbers. And be asked to introduce a valid column and row.|Introduced "3" for column and "a" for row|Row and column must be integer numbers. And got asked to introduce a valid column and row.|Yes
+    Column not integer|Row and column must be integer numbers. And be asked to introduce a valid column and row.|Introduced "a" for column and "0" for row|Row and column must be integer numbers. And got asked to introduce a valid column and row.|Yes
     Column and row that already missed|You already missed a shot on "Coordinate introduced". And be asked to introduce a valid column and row.|Introduced "0" for column and "0" for row, made sure it missed and introduced the same again|You already missed a shot on [0, 0]. And got asked to introduce a valid column and row.|Yes
     Column and row were it's a sunk ship|You have already sunk a ship on "Coordinate introduced". And be asked to introduce a valid column and row.|Introduced "1" for column and "0" for row, made sure it hitted and introduced the same again|You have already sunk a ship on [1, 0]. And got asked to introduce a valid column and row.|Yes
 
